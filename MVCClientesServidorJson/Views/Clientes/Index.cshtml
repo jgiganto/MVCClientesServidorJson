@@ -1,0 +1,67 @@
+﻿@model IEnumerable<MVCClientesServidorJson.Models.Cliente>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<h1>Buscar Cliente</h1>
+<form method="post" name="ncliente">
+    <input type="text" name="idcliente" />
+    <button type="submit">Buscar</button>
+</form>
+
+<p>
+    @Html.ActionLink("Create New", "Create", "Clientes")
+</p>
+@if(Model==null)
+    {
+<h1 style="color:red">registro no encontrado!!</h1>
+    }
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaginaWeb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imagen)
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model != null)
+    {
+
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaginaWeb)
+                </td>
+                <td>
+                    <img src="@item.Imagen" style="width:200px;height:200px" />
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new {  id=item.IdCliente  }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new {  id=item.IdCliente })
+                </td>
+            </tr>
+        }
+
+    }
+
+</table>
